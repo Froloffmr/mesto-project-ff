@@ -27,11 +27,6 @@ export function renderCard(card) {
 //  Функция лайка
 export function like(evt) {
     evt.target.classList.toggle('card__like-button_is-active');
-    cardContainer.addEventListener('click', function (evt) {
-        if (evt.target.classList.contains('.card__like-button')) {
-            like(evt.target);
-        }
-    });
 };
 
 
