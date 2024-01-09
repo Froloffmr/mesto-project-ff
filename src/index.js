@@ -3,6 +3,7 @@ import { initialCards } from './scripts/cards'
 import { cardContainer, createCard, deleteCard, renderCard, like } from './scripts/Card'
 import { openPopup } from './scripts/modal'
 import { closePopup } from './scripts/modal'
+import {closePopupByClick} from "./scripts/modal"
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupTypeEdit= document.querySelector('.popup_type_edit');
@@ -27,10 +28,12 @@ profileEditButton.addEventListener('click', function () {
     openPopup(popupTypeEdit);
     formElementEdit.elements.name.value=domNameInput.innerText;
     formElementEdit.elements.description.value=domjobInput.innerText;
+    popupTypeEdit.addEventListener('click', closePopupByClick);
 });
 
 profileAddButton.addEventListener('click', function () {
     openPopup(popupNewCard);
+    popupNewCard.addEventListener('click', closePopupByClick);
 });
 // Плавность
 const popups = document.querySelectorAll('.popup')
@@ -43,6 +46,7 @@ function handleFormSubmitEdit(evt) {
     domNameInput.textContent = formElementEdit.elements.name.value;
     domjobInput.textContent = formElementEdit.elements.description.value;
     closePopup(popupTypeEdit);
+    
 };
 // добавление NewCard
 function handleFormSubmitCard(evt) {
@@ -58,6 +62,7 @@ function openImageWindow(evt) {
     popupImage.src = evt.target.src;
     popupImage.alt = evt.target.alt;
     popupCaption.textContent = evt.target.alt;
+    popupOpenImage.addEventListener('click', closePopupByClick);
 };
 
 formElementEdit.addEventListener('submit', handleFormSubmitEdit);
