@@ -18,6 +18,6 @@ export const closePopupByClick = function(evt) {
 //Закрытие попапа
 export function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
-  document.removeEventListener('keydown', closePopupByEsc);
-  document.removeEventListener('click', closePopupByClick);
+  popup.removeEventListener('keydown', closePopupByEsc);
+  popup.removeEventListener('click', closePopupByClick);
 };
