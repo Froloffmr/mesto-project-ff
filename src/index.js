@@ -4,6 +4,8 @@ import { cardContainer, createCard, deleteCard, renderCard, like } from './scrip
 import { openPopup } from './scripts/modal'
 import { closePopup } from './scripts/modal'
 import {closePopupByClick} from "./scripts/modal"
+import {enableValidation} from "./scripts/validation"
+
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupTypeEdit= document.querySelector('.popup_type_edit');
@@ -18,6 +20,9 @@ const srcInputCard = document.querySelector('.popup__input_type_url');
 const popupOpenImage = document.querySelector('.popup_type_image');
 const popupImage = document.querySelector('.popup__image');
 const popupCaption = document.querySelector('.popup__caption');
+
+
+
 // Вывести карточки на страницу
 initialCards.forEach(function (item) {
     const createdCard = createCard(item, deleteCard, like, openImageWindow);
@@ -67,4 +72,4 @@ function openImageWindow(evt) {
 
 formElementEdit.addEventListener('submit', handleFormSubmitEdit);
 formElementCard.addEventListener('submit', handleFormSubmitCard);
-
+enableValidation();

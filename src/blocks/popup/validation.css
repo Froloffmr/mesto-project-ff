@@ -1,0 +1,12 @@
+.form__input_type_error {
+    border: 1;
+    border-color: red;
+  } 
+.form__input-error_active {
+    border: 1;
+    border-color: rgb(13, 10, 227);
+}
+  .button_inactive {
+    background: rgb(158, 116, 116);
+  }
+  
