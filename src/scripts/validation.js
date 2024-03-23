@@ -6,9 +6,6 @@ const hideInputError = (formElement, inputElement) => {
   };
 
   
-
-
-
 const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add('form__input_type_error');
@@ -17,7 +14,6 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   };
   
 
-  
   const checkInputValidity = (formElement, inputElement) => {
     if (inputElement.validity.patternMismatch) {
     inputElement.setCustomValidity(inputElement.dataset.errorMessage);
@@ -74,8 +70,17 @@ const showInputError = (formElement, inputElement, errorMessage) => {
       return !inputElement.validity.valid;
     })
   }; 
-  
-  export {enableValidation};
+
+  const clearValidation = (formElement, validationSettings) => {
+    const inputList = Array.from(formElement.querySelectorAll(validationSettings.inputSelector));
+    const buttonElement = formElement.querySelector(validationSettings.submitButtonSelector);
+    inputList.forEach((inputElement) =>{
+      hideInputError(formElement, inputElement, validationSettings);
+    });
+    toggleButtonState(inputList, buttonElement, validationSettings);
+}
+
+  export {enableValidation,clearValidation};
   
   
   

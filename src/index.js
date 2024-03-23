@@ -4,7 +4,7 @@ import { cardContainer, createCard, deleteCard, renderCard, like } from './scrip
 import { openPopup } from './scripts/modal'
 import { closePopup } from './scripts/modal'
 import {closePopupByClick} from "./scripts/modal"
-import {enableValidation} from "./scripts/validation"
+import {enableValidation,clearValidation} from "./scripts/validation"
 
 
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -20,6 +20,14 @@ const srcInputCard = document.querySelector('.popup__input_type_url');
 const popupOpenImage = document.querySelector('.popup_type_image');
 const popupImage = document.querySelector('.popup__image');
 const popupCaption = document.querySelector('.popup__caption');
+const validationConfig = {
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__button",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "form__input_type_error",
+    errorClass: "form__input-error",
+  };
 
 
 
@@ -33,6 +41,7 @@ profileEditButton.addEventListener('click', function () {
     openPopup(popupTypeEdit);
     formElementEdit.elements.name.value=domNameInput.innerText;
     formElementEdit.elements.description.value=domjobInput.innerText;
+    clearValidation(formElementEdit,validationConfig);
     popupTypeEdit.addEventListener('click', closePopupByClick);
 });
 
@@ -51,7 +60,6 @@ function handleFormSubmitEdit(evt) {
     domNameInput.textContent = formElementEdit.elements.name.value;
     domjobInput.textContent = formElementEdit.elements.description.value;
     closePopup(popupTypeEdit);
-    
 };
 // добавление NewCard
 function handleFormSubmitCard(evt) {
@@ -60,6 +68,7 @@ function handleFormSubmitCard(evt) {
     cardContainer.prepend(newCard);
     evt.target.reset();
     closePopup(popupNewCard);
+
 };
 // открытие окна с картинкой
 function openImageWindow(evt) {
@@ -72,4 +81,4 @@ function openImageWindow(evt) {
 
 formElementEdit.addEventListener('submit', handleFormSubmitEdit);
 formElementCard.addEventListener('submit', handleFormSubmitCard);
-enableValidation();
+enableValidation(validationConfig);
